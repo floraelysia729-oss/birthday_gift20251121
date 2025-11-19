@@ -41,7 +41,7 @@
             height: 100%;
             z-index: -1;
             background: rgba(255, 255, 255, 0.5); /* 半透明白底 */
-            backdrop-filter: blur(3px); /* 轻微模糊背景 */
+            backdrop-filter: blur(1px); /* 轻微模糊背景 */
         }
 
         #start-container {
@@ -70,7 +70,7 @@
             text-align: center;
             z-index: 10;
             background: rgba(255, 255, 255, 0.6);
-            padding: 20px;
+            padding: 15px;
             width:60%;
             border-radius: 30px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -79,8 +79,8 @@
         }
 
         .cake-icon { font-size: 60px; display: block; margin-bottom: 10px; }
-        h1 { color: #ff6b6b; margin: 10px 0; font-size: 1.8rem; }
-        p { color: #666; font-size: 1rem; line-height: 1.6; }
+        h1 { color: #ff6b6b; margin: 8px 0; font-size: 1.2rem; }
+        p { color: #666; font-size: 0.8rem; line-height: 1.4; }
 
         .fake-window {
             position: absolute;
@@ -114,7 +114,7 @@
     <div id="bg-slideshow"></div>
     <div id="bg-overlay"></div>
     <div id="start-container">
-        <button id="start-btn" onclick="startCelebration()">点击运行 Python 脚本 🐍</button>
+        <button id="start-btn" onclick="startCelebration()">点击接受生日祝福 📩</button>
     </div>
 
     <div id="final-card">
@@ -161,7 +161,7 @@
         const tips = [
             '祝yzr 19岁生日快乐！🎂', '祝你快乐，祝你健康', '愿你前程似锦',
             '天天开心', '生日快乐，yzr同学！', '愿你的每一天都顺顺利利',
-            '生日快乐，心想事成', '祝福来自南京', '愿你梦想成真',
+            '生日快乐，心想事成', '祝福来自南京', '愿你梦想成真','电脑打开更好看',
             'Happy Birthday!'
         ];
 
