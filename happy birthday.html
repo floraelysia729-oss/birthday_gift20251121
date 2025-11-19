@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🎂 收到一份特别的祝福</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: "Microsoft YaHei", sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 1s ease;
+        }
+
+        /* --- 1. 背景幻灯片层 (你之前漏掉了对应的HTML标签) --- */
+        #bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* 最底层 */
+            background-size: cover; /* 铺满 */
+            background-position: center center; /* 居中 */
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+        }
+
+        /* --- 2. 遮罩层 (让字看得清) --- */
+        #bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: rgba(255, 255, 255, 0.5); /* 半透明白底 */
+            backdrop-filter: blur(3px); /* 轻微模糊背景 */
+        }
+
+        #start-container {
+            z-index: 9999;
+            position: relative;
+        }
+        
+        #start-btn {
+            padding: 15px 40px;
+            font-size: 22px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+
+        #final-card {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            width:60%;
+            border-radius: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        .cake-icon { font-size: 60px; display: block; margin-bottom: 10px; }
+        h1 { color: #ff6b6b; margin: 10px 0; font-size: 1.8rem; }
+        p { color: #666; font-size: 1rem; line-height: 1.6; }
+
+        .fake-window {
+            position: absolute;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            border: 1px solid rgba(0,0,0,0.1);
+            transform: scale(0); 
+            animation: popIn 0.3s forwards;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes popIn {
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bg-slideshow"></div>
+    <div id="bg-overlay"></div>
+    <div id="start-container">
+        <button id="start-btn" onclick="startCelebration()">点击运行 Python 脚本 🐍</button>
+    </div>
+
+    <div id="final-card">
+        <span class="cake-icon">🎂</span>
+        <h1>Happy Birthday, yzr!</h1>
+        <p>
+            所有的弹窗都是为你而开<br>
+            祝你19岁生日快乐！<br>
+        </p>
+    </div>
+
+    <script>
+        // === 注意：你改成了 png，请确保文件夹里确实是 png ===
+        const photoList = [
+            "1.png", "2.png", "3.png", "4.png", "5.png", 
+            "6.png", "7.png", "8.png", "9.png", "10.png", 
+            "11.png", "12.png", "13.png"
+        ];
+        
+        // 预加载图片
+        photoList.forEach(img => {
+            new Image().src = `photos/${img}`;
+        });
+
+        // 轮播逻辑
+        let currentPhotoIndex = 0;
+        function startSlideshow() {
+            const bgDiv = document.getElementById('bg-slideshow');
+            // 如果 bgDiv 找不到，这里就会报错，现在加了 div 就好了
+            if (bgDiv) {
+                bgDiv.style.backgroundImage = `url('photos/${photoList[0]}')`;
+                setInterval(() => {
+                    currentPhotoIndex = (currentPhotoIndex + 1) % photoList.length;
+                    const nextImg = photoList[currentPhotoIndex];
+                    bgDiv.style.backgroundImage = `url('photos/${nextImg}')`;
+                }, 3000);
+            } else {
+                console.error("错误：找不到背景div");
+            }
+        }
+
+        startSlideshow();
+
+        const tips = [
+            '祝yzr 19岁生日快乐！🎂', '祝你快乐，祝你健康', '愿你前程似锦',
+            '天天开心', '生日快乐，yzr同学！', '愿你的每一天都顺顺利利',
+            '生日快乐，心想事成', '祝福来自南京', '愿你梦想成真',
+            'Happy Birthday!'
+        ];
+
+        const bgColors = [
+            'skyblue', 'lightgreen', 'lavender', 'lightyellow', 'plum', 
+            'coral', 'bisque', 'aquamarine', 'mistyrose', 'honeydew', 'lavenderblush', 'oldlace'
+        ];
+
+        const melody = [
+            [392, 500], [392, 500], [440, 1000], [392, 1000], [523, 1000], [494, 2000],
+            [392, 500], [392, 500], [440, 1000], [392, 1000], [587, 1000], [523, 2000],
+            [392, 500], [392, 500], [784, 1000], [659, 1000], [523, 1000], [494, 1000], [440, 2000],
+            [698, 500], [698, 500], [659, 1000], [523, 1000], [587, 1000], [523, 2000],
+            [392, 500], [392, 500], [440, 1000], [392, 1000], [523, 1000], [494, 2000],
+            [392, 500], [392, 500], [440, 1000], [392, 1000], [587, 1000], [523, 2000]
+        ];
+
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function playTone(freq, duration, startTime) {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.type = 'square'; 
+            oscillator.frequency.value = freq;
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            gainNode.gain.setValueAtTime(0, startTime);
+            gainNode.gain.linearRampToValueAtTime(0.1, startTime + 0.01);
+            gainNode.gain.linearRampToValueAtTime(0, startTime + duration / 1000);
+            oscillator.start(startTime);
+            oscillator.stop(startTime + duration / 1000);
+        }
+
+        function startMusic() {
+            if (!audioCtx) audioCtx = new AudioContext();
+            let currentTime = audioCtx.currentTime;
+            melody.forEach(note => {
+                playTone(note[0], note[1], currentTime);
+                currentTime += note[1] / 1000;
+            });
+        }
+
+        function createPopup() {
+            const div = document.createElement('div');
+            div.className = 'fake-window';
+            div.innerText = tips[Math.floor(Math.random() * tips.length)];
+            div.style.backgroundColor = bgColors[Math.floor(Math.random() * bgColors.length)];
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 50);
+            div.style.left = x + 'px';
+            div.style.top = y + 'px';
+            document.body.appendChild(div);
+            setTimeout(() => {
+                div.style.transition = 'opacity 1s';
+                div.style.opacity = 0;
+                setTimeout(() => div.remove(), 1000);
+            }, 4000);
+        }
+
+        function startCelebration() {
+            document.getElementById('start-btn').style.display = 'none';
+            const finalCard = document.getElementById('final-card');
+            finalCard.style.display = 'block';
+            setTimeout(() => finalCard.style.opacity = '1', 100);
+            
+            // 为了让背景图看得更清，可以把 body 背景设透明一点，或者保持原样
+            // document.body.style.background = 'transparent'; 
+
+            startMusic();
+            
+            let count = 0;
+            const maxPopups = 120;
+            const interval = setInterval(() => {
+                createPopup();
+                count++;
+                if (count >= maxPopups) clearInterval(interval);
+            }, 200);
+        }
+    </script>
+</body>
+</html>
