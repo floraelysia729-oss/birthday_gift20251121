@@ -52,12 +52,12 @@
         #start-btn {
             padding: 15px 40px;
             font-size: 22px;
-            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-            color: white;
+            background: #ffffff;
+            color: #333333;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
             animation: pulse 1.5s infinite;
         }
 
@@ -114,9 +114,10 @@
     <div id="bg-slideshow"></div>
     <div id="bg-overlay"></div>
     <div id="start-container">
-        <button id="start-btn" onclick="startCelebration()">点击接受生日祝福 📩</button>
-    </div>
-
+        <button id="start-btn" onclick="startCelebration()">
+    点击接受生日祝福 
+    <img src="photos/bomb.png" style="width: 25px; vertical-align: middle;">
+</button>
     <div id="final-card">
         <span class="cake-icon">🎂</span>
         <h1>Happy Birthday, yzr!</h1>
