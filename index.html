@@ -29,7 +29,7 @@
             background-size: cover; /* 铺满 */
             background-position: center center; /* 居中 */
             background-repeat: no-repeat;
-            transition: background-image 1s ease-in-out;
+            transition: background-image 0.001s ease-in-out;
         }
 
         /* --- 2. 遮罩层 (让字看得清) --- */
@@ -41,7 +41,7 @@
             height: 100%;
             z-index: -1;
             background: rgba(255, 255, 255, 0.5); /* 半透明白底 */
-            backdrop-filter: blur(1px); /* 轻微模糊背景 */
+
         }
 
         #start-container {
@@ -129,9 +129,9 @@
     <script>
         // === 注意：你改成了 png，请确保文件夹里确实是 png ===
         const photoList = [
-            "1.png", "2.png", "3.png", "4.png", "5.png", 
-            "6.png", "7.png", "8.png", "9.png", "10.png", 
-            "11.png", "12.png", "13.png"
+            "1.png", "2.png", "3.jpg", "4.png", "5.jpg", 
+            "6.png", "7.jpg", "8.png", "9.jpg", "10.jpg", 
+            "11.jpg", "12.jpg", "13.png"
         ];
         
         // 预加载图片
